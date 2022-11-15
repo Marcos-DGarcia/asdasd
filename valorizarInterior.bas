@@ -197,10 +197,11 @@ Sub valorizar_int()
         UCase (provincia)
         localidad = Hoja27.Cells(cont, 6)
         UCase (localidad)
+        'IF COLUMNA SHC NO? NO LLEVA INTERIOR ELSE SECT CASE
         Select Case provincia
          Case "BUENOS AIRES"
             Select Case localidad
-             Case "HURLINGHAM" Or "LA PLATA"
+             Case "HURLINGHAM" Or "LA PLATA" OR "VILL MARTELLI"
                 If kilos >= 4000 Then
                     tarifaInterior = kilos * valorGBA02
                 End If
