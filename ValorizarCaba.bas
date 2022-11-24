@@ -3,31 +3,62 @@ Dim valorCaba
 Dim cont
 Dim ultimaFila
 Dim kilos
-Dim valorminimo
-Dim valor100
-Dim valor1000
-Dim valor4000
-Dim valor8000
-Dim valor14000
 Dim tarifaCaba
 dim localidad
 dim provincia
 
+Dim valorminimo
+Dim valor1
+Dim valor2
+Dim valor3
+Dim valor4
+Dim valor5
+
+Dim valorGBA01
+Dim valorGBA02
+Dim valorGBA03
+Dim valorGBA04
+Dim valorGBA05
+Dim valorGbaMinimo
+
+Dim valorCanuelas01
+Dim valorCanuelas02
+Dim valorCanuelas03
+Dim valorCanuelas04
+Dim valorCanuelas05
+Dim valorCanuelasMinimo
+
 'CABA
-valor100 = 5.02
-valor1000 = 4.98
-valor4000 = 3.23
-valor8000 = 2.64
-valor14000 = 2.11
+valor1 = 5.02
+valor2 = 4.98
+valor3 = 3.23
+valor4 = 2.64
+valor5 = 2.11
 valorminimo = 1021.38
 'GRAN BUENOS AIRES
+valorGBA01 = 5.09
+valorGBA02 = 5.07
+valorGBA03 = 3.29
+valorGBA04 = 2.81
+valorGBA05 = 2.04
+valorGbaMinimo = 1036.48
+'CAÑUELAS
+valorCanuelas01 = 9.91
+valorCanuelas02 = 9.87
+valorCanuelas03 = 6.4
+valorCanuelas04 = 5.46
+valorCanuelas05 = 3.98
+valorCanuelasMinimo = 2017.74
+
 ultimaFila = Hoja27.Range("A" & Rows.Count).End(xlUp).Row
 For cont = 9 To ultimaFila
     kilos = Hoja27.Cells(cont, 7)
     localidad = Hoja27.Cells(cont, 6)
+    Ucase(localidad)
     provincia = Hoja27.Cells(cont, 8)
+    Ucase(provincia)
     select case provincia
-    case "BUENOS AIRES"
+    case "C.A.B.A"
         select case localidad
         Case "HURLINGHAM" Or "LA PLATA" OR "VILLA MARTELLI"
             If kilos >= 4000 Then
@@ -59,41 +90,41 @@ For cont = 9 To ultimaFila
                 tarifaInterior = valorCanuelasMinimo
             End If
                     'TARIFAS DE AMBA 5.09-5.07
-            case else
+        case else
             If kilos >= 14000 Then
-                tarifaInterior = kilos * valorCanuelas0
+                tarifaInterior = kilos * valorGBA05
             End If
             If kilos < 14000 And kilos >= 8000 Then
-                tarifaInterior = kilos * valorCanuelas04
+                tarifaInterior = kilos * valorGBA04
             End If
             If kilos < 8000 And kilos >= 4000 Then
-                tarifaInterior = kilos * valorCanuelas03
+                tarifaInterior = kilos * valorGBA03
             End If
             If kilos < 4000 And kilos >= 1000 Then
-                tarifaInterior = kilos * valorCanuelas02
+                tarifaInterior = kilos * valorGBA02
             End If
             If kilos < 1000 And kilos >= 214 Then
-                tarifaInterior = kilos * valorCanuelas01
+                tarifaInterior = kilos * valorGBA01
             End If
             If kilos < 204 Then
-                tarifaInterior = valorCanuelasMinimo
+                tarifaInterior = valorGbaMinimo
         end select
         ' 5.02-4.98 ETC VALORES DE EXPRESOS
     case else
         If kilos >= 14000 Then
-            tarifaCaba = kilos * valor14000
+            tarifaCaba = kilos * valor5
         End If
         If kilos < 14000 And kilos >= 8000 Then
-            tarifaCaba = kilos * valor8000
+            tarifaCaba = kilos * valor4
         End If
         If kilos < 8000 And kilos >= 4000 Then
-            tarifaCaba = kilos * valor4000
+            tarifaCaba = kilos * valor3
         End If
         If kilos < 4000 And kilos >= 1000 Then
-            tarifaCaba = kilos * valor1000
+            tarifaCaba = kilos * valor2
         End If
         If kilos < 1000 And kilos >= 214 Then
-            tarifaCaba = kilos * valor100
+            tarifaCaba = kilos * valor1
         End If
         If kilos < 214 Then
             tarifaCaba = valorminimo
