@@ -1902,11 +1902,8 @@ Sub valorizar_int()
             If kilos < 204 Then
                 tarifaInterior = valorTierraDelFMinimo
             End If                     
-        END SELECT
-
-
-
-        
+        END SELECT 
+        Hoja27.Cells(cont, 8) = tarifaInterior       
     Next cont
 
 

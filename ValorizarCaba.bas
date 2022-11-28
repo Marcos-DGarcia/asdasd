@@ -52,15 +52,16 @@ valorCanuelasMinimo = 2017.74
 
 ultimaFila = Hoja27.Range("A" & Rows.Count).End(xlUp).Row
 For cont = 9 To ultimaFila
-    kilos = Hoja27.Cells(cont, 7)
-    localidad = Hoja27.Cells(cont, 6)
+    kilos = Hoja27.Cells(cont, 8)
+    localidad = Hoja27.Cells(cont, 7)
     Ucase(localidad)
-    provincia = Hoja27.Cells(cont, 8)
+    provincia = Hoja27.Cells(cont, 6)
     Ucase(provincia)
     select case provincia
-    case "C.A.B.A"
+    case "BUENOS AIRES"
         select case localidad
-        Case "HURLINGHAM" Or "LA PLATA" OR "VILLA MARTELLI"
+        'if
+             Case "HURLINGHAM" Or "LA PLATA" OR "VILLA MARTELLI"
             If kilos >= 4000 Then
                 tarifaInterior = kilos * valorGBA02
             End If
@@ -69,14 +70,15 @@ For cont = 9 To ultimaFila
             End If
             If kilos < 204 Then
                 tarifaInterior = valorGbaMinimo
-            end if
-        Case "CAÑUELAS"
+            End if
+        'if
+            Case "CAÑUELAS"
             If kilos >= 14000 Then
                 tarifaInterior = kilos * valorCanuelas0
             End If
             If kilos < 14000 And kilos >= 8000 Then
                 tarifaInterior = kilos * valorCanuelas04
-             End If
+            End If
             If kilos < 8000 And kilos >= 4000 Then
                 tarifaInterior = kilos * valorCanuelas03
             End If
@@ -89,8 +91,8 @@ For cont = 9 To ultimaFila
             If kilos < 204 Then
                 tarifaInterior = valorCanuelasMinimo
             End If
-                    'TARIFAS DE AMBA 5.09-5.07
-        case else
+        'else if         'TARIFAS DE AMBA 5.09-5.07
+            case else
             If kilos >= 14000 Then
                 tarifaInterior = kilos * valorGBA05
             End If
@@ -108,6 +110,7 @@ For cont = 9 To ultimaFila
             End If
             If kilos < 204 Then
                 tarifaInterior = valorGbaMinimo
+            end if
         end select
         ' 5.02-4.98 ETC VALORES DE EXPRESOS
     case else
@@ -129,7 +132,7 @@ For cont = 9 To ultimaFila
         If kilos < 214 Then
             tarifaCaba = valorminimo
         End If
-        Hoja27.Cells(cont, 8) = tarifaCaba    
+        Hoja27.Cells(cont, 9) = tarifaCaba    
     end select
 Next cont
 End Sub
